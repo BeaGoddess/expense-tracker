@@ -1,6 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# <div align="center"> Expense Tracker 💲 (🚧 Work in Progress) </div>
+
+Web app for expense tracker
+
+
+## 📝 TODO
+
+| ID  | Start Date  | Task | End Date | State |
+| :---:| :---: | ------------- | :---: | :---: |
+|  #1 | 04-03-2024  | Create Figma Designs  | - | :white_large_square: |
+
+## ✍🏼 Tasks
+
+<details>
+<summary>#1 Create Figma Designs</summary>
+
+> ### Working on that
+>
+>
+
+</details>
+
+
+## 🏁 Getting Started
 
 First, run the development server:
 
