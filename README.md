@@ -15,8 +15,8 @@ Web app for expense tracker
 <details>
 <summary>#1 Create Figma Designs</summary>
 
-> ### Working on that
->
+> ### Sign in page ([link](https://www.figma.com/file/MX92NeKpbDXMMAEPCNG15f/Design?type=design&node-id=1-2&mode=design&t=jlkan7pkdzpdqdLh-4))
+> ![Example Image](/public/images/Sign-in.png)
 >
 
 </details>
