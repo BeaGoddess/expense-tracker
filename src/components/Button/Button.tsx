@@ -1,3 +1,5 @@
+"use client"
+
 import { forwardRef } from "react";
 
 type ButtonProps = {
@@ -39,5 +41,7 @@ const Button = forwardRef<HTMLDivElement | null, ButtonProps>(
     );
   }
 );
+
+Button.displayName = 'Button';
 
 export default Button;
