@@ -1,11 +1,9 @@
-"use client"
-
 import { forwardRef } from "react";
 
 type ButtonProps = {
   text: string;
   variant?: "warned" | "info" | "sign-in";
-} & React.ComponentPropsWithoutRef<"div">;
+} & React.ComponentPropsWithoutRef<"button">;
 
 const getButtonClasses = (variant?: string): string => {
   let className = "focus:outline-none cursor-pointer";
@@ -32,16 +30,16 @@ const getButtonClasses = (variant?: string): string => {
   return className;
 };
 
-const Button = forwardRef<HTMLDivElement | null, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement | null, ButtonProps>(
   ({ text, variant, ...props }, ref) => {
     return (
-      <div ref={ref} className={getButtonClasses(variant)} {...props}>
+      <button ref={ref} className={getButtonClasses(variant)} {...props}>
         {text}
-      </div>
+      </button>
     );
   }
 );
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 export default Button;
