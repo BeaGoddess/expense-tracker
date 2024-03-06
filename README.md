@@ -8,17 +8,29 @@ Web app for expense tracker
 
 | ID  | Start Date  | Task | End Date | State |
 | :---:| :---: | ------------- | :---: | :---: |
-|  #1 | 04-03-2024  | Create Figma Designs  | - | :white_large_square: |
+|  #1 | 04-03-2024  | Create Figma Designs (Mockups)  | - | :white_large_square: |
+|  #1.1 | 04-03-2024  | Sign in page (Figma) | 05-03-2024 | :heavy_check_mark: |
+|  #1.2 | 04-03-2024  | Sign out page (Figma)  | 05-03-2024 | :heavy_check_mark: |
+|  #1.3 | 04-03-2024  | Wallet page (Figma)  | 05-03-2024 | :heavy_check_mark: |
+|  #2 | 05-03-2024  | Create pages (UI) | - | :white_large_square: |
+|  #2.1 | 05-03-2024  | Sign in (UI) | - | :white_large_square: |
+|  #2.1 | - | Sign up (UI) | - | :white_large_square: |
 
 ## ✍🏼 Tasks
 
 <details>
-<summary>#1 Create Figma Designs</summary>
+<summary>#1 Create Figma Designs (Mockups)</summary>
 
 > ### Sign in page ([link](https://www.figma.com/file/MX92NeKpbDXMMAEPCNG15f/Design?type=design&node-id=1-2&mode=design&t=jlkan7pkdzpdqdLh-4))
 > ![Example Image](/public/images/Sign-in.png)
 >
-
+> ### Sign out page ([link](https://www.figma.com/file/MX92NeKpbDXMMAEPCNG15f/Design?type=design&node-id=1-2&mode=design&t=jlkan7pkdzpdqdLh-4))
+> ![Example Image](/public/images/Sign-out.png)
+>
+> ### Wallet page ([link](https://www.figma.com/file/MX92NeKpbDXMMAEPCNG15f/Design?type=design&node-id=1-2&mode=design&t=jlkan7pkdzpdqdLh-4))
+> ![Example Image](/public/images/Wallet.png)
+> ![Example Image](/public/images/Create-wallet.png)
+> ![Example Image](/public/images/Not-found-wallets.png)
 </details>
 
 
