@@ -4,25 +4,30 @@ import { signin } from "@/app/(auth)/action";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useState } from "react";
+import { useFormStatus } from "react-dom";
 
 export default function FormSignIn() {
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function signInWithEmail(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    setLoading(true);
-    const error = await signin(new FormData(event.currentTarget));
-    if (error) {
-      setError(error);
-    }
-
-    setLoading(false);
+  function Submit() {
+    const { pending } = useFormStatus();
+    return (
+      <Button
+        text={pending ? "Logging in..." : "Login"}
+        variant="sign-in"
+        type="submit"
+        disabled={pending}
+      />
+    );
   }
 
   return (
-    <form onSubmit={signInWithEmail}>
+    <form
+      action={async (formData) => {
+        const { error } = await signin(formData);
+        setError(error);
+      }}
+    >
       <Input
         type="email"
         name="email"
@@ -41,12 +46,7 @@ export default function FormSignIn() {
         onChange={() => setError("")}
       />
 
-      <Button
-        text={loading ? "Logging in" : "Login"}
-        variant="sign-in"
-        type={"submit"}
-        disabled={loading}
-      />
+      <Submit />
 
       <div className="text-center text-xs font-semibold mb-2 text-red-500">
         {error}
