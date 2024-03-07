@@ -1,24 +1,12 @@
+import { signin } from "@/app/(auth)/sign-in/action";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 
-async function formAction(formData: FormData) {
-  "use server";
-
-  const rawFormData = {
-    username: formData.get("username"),
-    password: formData.get("password"),
-  };
-}
 
 export default function FormSignIn() {
   return (
-    <form action={formAction}>
-      <Input
-        type="text"
-        name="username"
-        placeholder="Username"
-        variant="sign-in"
-      />
+    <form action={signin}>
+      <Input type="email" name="email" placeholder="Email" variant="sign-in" />
 
       <Input
         name="password"
@@ -26,6 +14,7 @@ export default function FormSignIn() {
         type="password"
         variant="sign-in"
       />
+
       <Button text="Login" variant="sign-in" type={"submit"} />
     </form>
   );
