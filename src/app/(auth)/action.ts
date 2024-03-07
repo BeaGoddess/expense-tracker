@@ -17,9 +17,9 @@ export async function signin(formData: FormData) {
 
   if (error) {
     if(error.status === 400) {
-      return error
+      return error.message
     }
-    
+
     redirect('/error')
   }
 

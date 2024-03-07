@@ -15,7 +15,7 @@ export default function FormSignIn() {
     setLoading(true);
     const error = await signin(new FormData(event.currentTarget));
     if (error) {
-      setError(error.message);
+      setError(error);
     }
 
     setLoading(false);
