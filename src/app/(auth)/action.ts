@@ -16,6 +16,10 @@ export async function signin(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword(data)
 
   if (error) {
+    if(error.status === 400) {
+      return error
+    }
+    
     redirect('/error')
   }
 
