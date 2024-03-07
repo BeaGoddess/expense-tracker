@@ -1,5 +1,5 @@
 "use client";
-
+import { toast } from 'react-toastify';
 import { signin } from "@/app/(auth)/action";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
@@ -25,7 +25,7 @@ export default function FormSignIn() {
     <form
       action={async (formData) => {
         const { error } = await signin(formData);
-        setError(error);
+        toast.error(error)
       }}
     >
       <Input
