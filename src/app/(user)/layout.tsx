@@ -1,5 +1,6 @@
 "use client";
 
+import "@/assets/index.css"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
