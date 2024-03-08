@@ -12,7 +12,7 @@ export default function FormSignIn() {
     return (
       <Button
         text={pending ? "Logging in..." : "Login"}
-        variant="sign-in"
+        variant="auth"
         type="submit"
         disabled={pending}
       />

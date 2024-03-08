@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 type ButtonProps = {
   text: string;
-  variant?: "warned" | "info" | "sign-in";
+  variant?: "warned" | "info" | "auth";
 } & React.ComponentPropsWithoutRef<"button">;
 
 const getButtonClasses = (variant?: string): string => {
@@ -17,7 +17,7 @@ const getButtonClasses = (variant?: string): string => {
       className += " bg-blue-400 text-white";
       break;
 
-    case "sign-in":
+    case "auth":
       className +=
         " bg-[#7574C7] p-2 w-full rounded-3xl mb-4 text-white text-sm text-center font-bold hover:bg-[#AEA9F2] duration-700";
       break;
