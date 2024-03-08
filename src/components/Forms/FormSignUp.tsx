@@ -1,12 +1,11 @@
 "use client";
-import { toast } from 'react-toastify';
-import { signin } from "@/app/(auth)/action";
+import { toast } from "react-toastify";
+//import { signin } from "@/app/(auth)/action";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useFormStatus } from "react-dom";
 
-export default function FormSignIn() {
-
+export default function FormSignUp() {
   function Submit() {
     const { pending } = useFormStatus();
     return (
@@ -20,12 +19,11 @@ export default function FormSignIn() {
   }
 
   return (
-    <form
-      action={async (formData) => {
-        const { error } = await signin(formData);
-        toast.error(error)
-      }}
-    >
+    <form action={async (formData) => {}}>
+      <Input name="name" placeholder="Name" variant="auth" required />
+
+      <Input name="username" placeholder="Username" variant="auth" required />
+
       <Input
         type="email"
         name="email"
@@ -37,6 +35,14 @@ export default function FormSignIn() {
       <Input
         name="password"
         placeholder="Password"
+        type="password"
+        variant="auth"
+        required
+      />
+
+      <Input
+        name="repeat-password"
+        placeholder="Repeat password"
         type="password"
         variant="auth"
         required
