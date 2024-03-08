@@ -7,7 +7,7 @@ export default function AppDetails() {
       </div>
 
       <div className="text-justify my-5 md:text-base text-sm font-light md:pb-10">
-        Welcome! This is a personal project created for easily manage your
+        Welcome! This is a personal project created to easily manage your
         finances by tracking your expenses. Sign in to start taking control of
         your financial journey.
       </div>
