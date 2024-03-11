@@ -1,38 +1,20 @@
-"use client";
+"use server";
 
-import "@/assets/index.css"
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { createClient } from "@/utils/supabase/client";
+import "@/assets/index.css";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
-export default function UserLayout({
+export default async function UserLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
-  const [authenticated, setAuthenticated] = useState(false);
+  const supabase = createClient();
 
-  useEffect(() => {
-    const checkUser = async () => {
-      const supabase = createClient();
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
+  const { data, error } = await supabase.auth.getUser();
 
-      if (!session) {
-        router.replace("/sign-in");
-      } else {
-        setAuthenticated(true);
-      }
-    };
-
-    checkUser();
-  }, [router]);
-
-  if (!authenticated) {
-    return null;
+  if (error || !data?.user) {
+    redirect("/sign-in");
   }
 
   return <section className="h-screen bg-white">{children}</section>;

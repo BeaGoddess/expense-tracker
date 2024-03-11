@@ -22,8 +22,9 @@ export async function signin(formData: FormData) {
     redirect("/error");
   }
 
-  revalidatePath("/", "layout");
+  console.log("Fiz login");
   redirect("/");
+  
 }
 
 export async function signup(formData: FormData) {
