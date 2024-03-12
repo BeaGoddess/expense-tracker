@@ -1,33 +1,30 @@
 import { forwardRef } from "react";
+import { cn } from "@/lib/utils/cn";
+import { cva, type VariantProps } from "class-variance-authority";
 
 type InputProps = {
   name: string;
   variant?: "warned" | "info" | "auth";
-} & React.ComponentPropsWithoutRef<"input">;
+} & React.ComponentPropsWithoutRef<"input"> &
+  VariantProps<typeof intupVariants>;
 
-const getInputClasses = (variant?: string): string => {
-  let className = "p-2 w-full focus:outline-none ";
-
-  switch (variant) {
-    case "auth":
-      className +=
-        " bg-[#AEA9F2]/20 rounded-lg mb-4 text-gray-500 text-sm pl-4";
-      break;
-
-    default:
-      className += " bg-black text-white";
-      break;
-  }
-
-  return className;
-};
+const intupVariants = cva("p-2 w-full focus:outline-none", {
+  variants: {
+    variant: {
+      auth: "bg-[#AEA9F2]/20 rounded-lg mb-4 text-gray-500 text-sm pl-4",
+    },
+    defaultVariants: {
+      variant: "bg-black text-white",
+    },
+  },
+});
 
 const Input = forwardRef<HTMLInputElement | null, InputProps>(
-  ({ name, variant, ...props }, ref) => {
+  ({ name, variant, className, ...props }, ref) => {
     return (
       <input
         ref={ref}
-        className={getInputClasses(variant)}
+        className={cn(intupVariants({ variant, className }))}
         name={name}
         {...props}
       />

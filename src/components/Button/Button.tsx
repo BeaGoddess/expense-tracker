@@ -1,39 +1,33 @@
 import { forwardRef } from "react";
+import { cn } from "@/lib/utils/cn";
+import { cva, type VariantProps } from "class-variance-authority";
 
 type ButtonProps = {
   text: string;
-  variant?: "warned" | "info" | "auth";
-} & React.ComponentPropsWithoutRef<"button">;
+} & React.ComponentPropsWithoutRef<"button"> &
+  VariantProps<typeof buttonVariants>;
 
-const getButtonClasses = (variant?: string): string => {
-  let className = "focus:outline-none cursor-pointer";
-
-  switch (variant) {
-    case "warned":
-      className += " bg-white text-black border border-gray-300";
-      break;
-
-    case "info":
-      className += " bg-blue-400 text-white";
-      break;
-
-    case "auth":
-      className +=
-        " bg-[#7574C7] p-2 w-full rounded-3xl mb-4 text-white text-sm text-center font-bold hover:bg-[#AEA9F2] duration-700";
-      break;
-
-    default:
-      className += " bg-black text-white";
-      break;
-  }
-
-  return className;
-};
+const buttonVariants = cva("focus:outline-none cursor-pointer", {
+  variants: {
+    variant: {
+      warned: "bg-white text-black border border-gray-300",
+      info: "bg-blue-400 text-white",
+      auth: "bg-[#7574C7] p-2 w-full rounded-3xl mb-4 text-white text-sm text-center font-bold hover:bg-[#AEA9F2] duration-700",
+    },
+    defaultVariants: {
+      variant: "bg-black text-white",
+    },
+  },
+});
 
 const Button = forwardRef<HTMLButtonElement | null, ButtonProps>(
-  ({ text, variant, ...props }, ref) => {
+  ({ text, variant, className, ...props }, ref) => {
     return (
-      <button ref={ref} className={getButtonClasses(variant)} {...props}>
+      <button
+        ref={ref}
+        className={cn(buttonVariants({ variant, className }))}
+        {...props}
+      >
         {text}
       </button>
     );
