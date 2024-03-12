@@ -1,12 +1,13 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { NextResponse, type NextRequest } from 'next/server'
+import { authPaths, protectedPaths } from "@/lib/constant";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { NextResponse, NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
     },
-  })
+  });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -14,48 +15,65 @@ export async function updateSession(request: NextRequest) {
     {
       cookies: {
         get(name: string) {
-          return request.cookies.get(name)?.value
+          return request.cookies.get(name)?.value;
         },
         set(name: string, value: string, options: CookieOptions) {
           request.cookies.set({
             name,
             value,
             ...options,
-          })
+          });
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
-          })
+          });
           response.cookies.set({
             name,
             value,
             ...options,
-          })
+          });
         },
         remove(name: string, options: CookieOptions) {
           request.cookies.set({
             name,
-            value: '',
+            value: "",
             ...options,
-          })
+          });
           response = NextResponse.next({
             request: {
               headers: request.headers,
             },
-          })
+          });
           response.cookies.set({
             name,
-            value: '',
+            value: "",
             ...options,
-          })
+          });
         },
       },
     }
-  )
+  );
 
   // refreshing the auth token
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const url = new URL(request.url);
 
-  return response
+  if (user) {
+    // Logged -> can't go to login page
+    if (authPaths.includes(url.pathname)) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    return response;
+  } else {
+    // Not logged -> can't go to user pages
+    if (protectedPaths.includes(url.pathname)) {
+      return NextResponse.redirect(new URL("/sign-in", request.url));
+    }
+
+    return response;
+  }
 }
