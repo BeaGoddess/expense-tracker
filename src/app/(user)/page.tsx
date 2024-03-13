@@ -5,7 +5,7 @@ import { signout } from "../(auth)/action";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col">
       <div className="flex justify-end m-2">
         <Button
           text="Sign out"
@@ -15,7 +15,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="flex-1 flex justify-center items-center text-[105px] text-center">
+      <div className="flex-1 flex justify-center items-center text-[55px] text-center">
         🐼 Still in development 🚧
       </div>
     </div>
