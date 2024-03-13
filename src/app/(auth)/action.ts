@@ -22,7 +22,6 @@ export async function signin(formData: FormData) {
     redirect("/error");
   }
 
-  console.log("Fiz login");
   redirect("/");
   
 }
@@ -53,4 +52,20 @@ export async function signup(formData: FormData) {
 
   revalidatePath("/", "layout");
   redirect("/");
+}
+
+export async function signout() {
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    if (error.status === 400) {
+      return { error: error.message };
+    }
+
+    redirect("/error");
+  }
+
+  redirect("/sign-in");
 }
