@@ -7,9 +7,9 @@ export default function UserLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex h-screen text-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 background-animate">
+    <section className="flex min-h-screen min-w-fit text-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 background-animate">
       <NavBar />
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 flex justify-center items-center">{children}</div>
     </section>
   );
 }
