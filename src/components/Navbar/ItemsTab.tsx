@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Item } from "@/types/navbar";
 
-
 export default function ItemLink({ item }: { item: Item }) {
   const pathname = usePathname();
   const LinkIcon = item.icon;
@@ -12,7 +11,7 @@ export default function ItemLink({ item }: { item: Item }) {
     <Link
       href={item.href}
       className={cn(
-        "text-lg font-medium text-white hover:bg-[#7574C7]/75 rounded-md duration-500",
+        "text-lg font-medium text-white hover:bg-[#7574C7]/75 rounded-md transition-colors duration-700",
         {
           "text-[#7574C7] bg-white font-bold hover:bg-white":
             pathname === item.href,
