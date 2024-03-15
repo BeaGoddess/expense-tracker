@@ -20,7 +20,7 @@ export default function Tabs() {
       >
         <div className="flex p-2 gap-6 items-center">
           <ArrowRightCircleIcon className="h-5 w-5" />
-          <div> Sign out </div>
+          <div className="hidden md:block"> Sign out </div>
         </div>
       </div>
     </div>

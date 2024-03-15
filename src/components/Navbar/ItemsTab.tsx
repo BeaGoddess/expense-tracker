@@ -11,7 +11,7 @@ export default function ItemLink({ item }: { item: Item }) {
     <Link
       href={item.href}
       className={cn(
-        "text-lg font-medium text-white hover:bg-[#7574C7]/75 rounded-md transition-colors duration-700",
+        "text-lg font-medium text-white hover:bg-[#7574C7]/75 rounded-md transition-colors",
         {
           "text-[#7574C7] bg-white font-bold hover:bg-white":
             pathname === item.href,
@@ -19,7 +19,7 @@ export default function ItemLink({ item }: { item: Item }) {
       )}
     >
       <div className="flex p-2 gap-6 items-center">
-        <LinkIcon className="h-5 w-5" />
+        <LinkIcon className="h-5 w-5 my-1" />
         <p className="hidden md:block">{item.name}</p>
       </div>
     </Link>
