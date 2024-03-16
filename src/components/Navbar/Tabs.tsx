@@ -4,13 +4,18 @@ import { signout } from "@/app/(auth)/action";
 import { links as navLinks } from "@/types/navbar";
 import ItemLink from "./ItemsTab";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
+import { cn } from "@/lib/utils/cn";
 
-export default function Tabs() {
+interface TabsProps {
+  capsule: boolean;
+}
+
+export default function Tabs({ capsule }: TabsProps) {
   return (
     <div className="justify-between flex-1 flex flex-col">
       <div className="flex flex-col gap-4">
         {navLinks.map((link) => {
-          return <ItemLink key={link.name} item={link} />;
+          return <ItemLink key={link.name} item={link} capsule={capsule} />;
         })}
       </div>
 
@@ -19,8 +24,14 @@ export default function Tabs() {
         onClick={() => signout()}
       >
         <div className="flex p-2 gap-6 items-center">
-          <ArrowRightCircleIcon className="h-5 w-5" />
-          <div className="hidden md:block"> Sign out </div>
+          <ArrowRightCircleIcon className="h-5 w-5 my-1" />
+          <div
+            className={cn("hidden md:block", {
+              "md:hidden": capsule,
+            })}
+          >
+            Sign out
+          </div>
         </div>
       </div>
     </div>

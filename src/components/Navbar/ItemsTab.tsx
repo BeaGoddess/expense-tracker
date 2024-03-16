@@ -3,7 +3,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Item } from "@/types/navbar";
 
-export default function ItemLink({ item }: { item: Item }) {
+export default function ItemLink({
+  item,
+  capsule,
+}: {
+  item: Item;
+  capsule: boolean;
+}) {
   const pathname = usePathname();
   const LinkIcon = item.icon;
 
@@ -20,7 +26,14 @@ export default function ItemLink({ item }: { item: Item }) {
     >
       <div className="flex p-2 gap-6 items-center">
         <LinkIcon className="h-5 w-5 my-1" />
-        <p className="hidden md:block">{item.name}</p>
+        <p
+          className={cn(
+            { "hidden md:block": capsule === false },
+            { "hidden md:hidden": capsule === true }
+          )}
+        >
+          {item.name}
+        </p>
       </div>
     </Link>
   );
