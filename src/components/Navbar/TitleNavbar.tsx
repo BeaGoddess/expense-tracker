@@ -10,15 +10,15 @@ interface TitleBarProps {
 
 export default function TitleBar({ setCapsule, capsule }: TitleBarProps) {
   return (
-    <div className="flex mt-8 mb-12">
+    <div className="flex sm:mb-12 my-0 sm:mt-8 items-center sm:items-baseline mr-4">
       <div
         className={cn(
-          "font-bold text-4xl leading-tight text-white ",
+          "font-bold sm:text-4xl text-lg leading-tight text-white border-r border-white sm:border-r-0  pr-4",
           {
-            "hidden md:hidden": capsule === true,
+            "sm:hidden": capsule === true,
           },
           {
-            "hidden md:block": capsule === false,
+            "sm:block": capsule === false,
           }
         )}
       >
@@ -28,10 +28,10 @@ export default function TitleBar({ setCapsule, capsule }: TitleBarProps) {
 
       <div
         onClick={() => {
-          capsule = !capsule;
-          setCapsule(capsule);
+          setCapsule(!capsule);
+          console.log("Alterou?", capsule);
         }}
-        className="cursor-pointer md:visible invisible"
+        className="cursor-pointer sm:block hidden"
       >
         <Bars3Icon className="h-8 w-8 mt-2 text-white stroke-[3px] m-auto" />
       </div>

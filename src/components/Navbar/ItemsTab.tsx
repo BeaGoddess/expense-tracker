@@ -28,8 +28,8 @@ export default function ItemLink({
         <LinkIcon className="h-5 w-5 my-1" />
         <p
           className={cn(
-            { "hidden md:block": capsule === false },
-            { "hidden md:hidden": capsule === true }
+            { "hidden sm:block": capsule === false },
+            { "hidden sm:hidden": capsule === true }
           )}
         >
           {item.name}

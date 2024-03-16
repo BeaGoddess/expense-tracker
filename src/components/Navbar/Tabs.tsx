@@ -12,8 +12,8 @@ interface TabsProps {
 
 export default function Tabs({ capsule }: TabsProps) {
   return (
-    <div className="justify-between flex-1 flex flex-col">
-      <div className="flex flex-col gap-4">
+    <div className="justify-between flex-1 flex flex-row sm:flex-col">
+      <div className="flex gap-4 flex-row sm:flex-col">
         {navLinks.map((link) => {
           return <ItemLink key={link.name} item={link} capsule={capsule} />;
         })}
@@ -26,8 +26,8 @@ export default function Tabs({ capsule }: TabsProps) {
         <div className="flex p-2 gap-6 items-center">
           <ArrowRightCircleIcon className="h-5 w-5 my-1" />
           <div
-            className={cn("hidden md:block", {
-              "md:hidden": capsule,
+            className={cn("hidden sm:block", {
+              "sm:hidden": capsule,
             })}
           >
             Sign out
