@@ -10,7 +10,7 @@ interface TitleBarProps {
 
 export default function TitleBar({ setCapsule, capsule }: TitleBarProps) {
   return (
-    <div className="flex sm:mb-12 my-0 sm:mt-8 items-center sm:items-baseline mr-4">
+    <div className="flex sm:mb-12 my-0 sm:mt-8 items-center sm:items-baseline justify-between sm:mr-0 mr-4 ">
       <div
         className={cn(
           "font-bold sm:text-4xl text-lg leading-tight text-white border-r border-white sm:border-r-0  pr-4",
@@ -22,8 +22,8 @@ export default function TitleBar({ setCapsule, capsule }: TitleBarProps) {
           }
         )}
       >
-        <span className="text-[#7574C7]">E</span>xpense{" "}
-        <span className="text-[#7574C7]">T</span>racker
+        <span className="text-[#7574C7]">E</span><span>xpense</span><br />
+        <span className="text-[#7574C7]">T</span><span>racker</span>
       </div>
 
       <div
@@ -33,7 +33,7 @@ export default function TitleBar({ setCapsule, capsule }: TitleBarProps) {
         }}
         className="cursor-pointer sm:block hidden"
       >
-        <Bars3Icon className="h-8 w-8 mt-2 text-white stroke-[3px] m-auto" />
+        <Bars3Icon className="h-8 w-8 text-white stroke-[3px] m-auto" />
       </div>
     </div>
   );
