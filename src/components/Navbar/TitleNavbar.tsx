@@ -29,7 +29,6 @@ export default function TitleBar({ setCapsule, capsule }: TitleBarProps) {
       <div
         onClick={() => {
           setCapsule(!capsule);
-          console.log("Alterou?", capsule);
         }}
         className="cursor-pointer sm:block hidden"
       >
