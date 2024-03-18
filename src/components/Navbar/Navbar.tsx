@@ -11,7 +11,7 @@ export default function NavBar() {
   return (
     <div
       className={cn(
-        "w-full sm:w-[250px] text-white bg-gradient-to-b from-[#8E8CDA] to-[#C0BAFF] p-3 flex flex-row sm:flex-col",
+        "w-full sm:w-[250px] sm:h-auto h-[70px] text-white bg-gradient-to-b from-[#8E8CDA] to-[#C0BAFF] p-3 flex flex-row sm:flex-col sm:static fixed overflow-hidden top-0",
         {
           "w-full sm:w-[60px]": capsule === true,
         }

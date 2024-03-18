@@ -9,7 +9,9 @@ export default function UserLayout({
   return (
     <section className="flex min-h-screen min-w-fit text-black bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 background-animate sm:flex-row flex-col">
       <NavBar />
-      {children}
+      <div className="bg-slate-100 flex-1 flex flex-col overflow-y-auto sm:pt-0 pt-[75px]">
+        {children}
+      </div>
     </section>
   );
 }
