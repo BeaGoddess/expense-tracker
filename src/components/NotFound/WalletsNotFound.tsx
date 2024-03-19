@@ -9,7 +9,8 @@ export default function WalletsNotFound() {
       <div className="font-bold text-xl mb-2"> No Wallets Found </div>
 
       <div className="leading-7 w-[350px] text-center">
-        It seems you haven't created a wallet yet... <br /> Start to create one.
+        It seems you haven&apos;t created a wallet yet... <br /> Start to create
+        one.
       </div>
     </div>
   );
