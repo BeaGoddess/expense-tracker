@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createClient } from "@/utils/supabase/server";
+import { useSupabaseServer } from "@/utils/supabase/server";
 
 export async function signin(formData: FormData) {
-  const supabase = createClient();
+  const supabase = useSupabaseServer();
 
   const data = {
     email: formData.get("email") as string,
@@ -27,7 +27,7 @@ export async function signin(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
-  const supabase = createClient();
+  const supabase = useSupabaseServer();
 
   const data = {
     email: formData.get("email") as string,
@@ -55,7 +55,7 @@ export async function signup(formData: FormData) {
 }
 
 export async function signout() {
-  const supabase = createClient();
+  const supabase = useSupabaseServer();
 
   const { error } = await supabase.auth.signOut();
 

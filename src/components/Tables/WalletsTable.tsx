@@ -1,6 +1,19 @@
+"use client";
+
+import useWallets from "@/hooks/wallets";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 export default function WalletsTable() {
+  const { data: wallets, isLoading, isError } = useWallets();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
+
   return (
     <div className="mx-10 flex-1">
       <table className="table-auto w-full">
@@ -12,7 +25,7 @@ export default function WalletsTable() {
           </tr>
         </thead>
         <tbody className="text-gray-500">
-          {[...Array(5)].map((item, index) => {
+          {wallets?.map((item, index) => {
             return (
               <tr
                 key={index}
@@ -22,8 +35,8 @@ export default function WalletsTable() {
                     : ""
                 }
               >
-                <td className="py-3 px-4"> Wallet #{index + 1}</td>
-                <td className="py-3 px-4"> 1000.30€</td>
+                <td className="py-3 px-4"> {item.name}</td>
+                <td className="py-3 px-4"> {item.balance}€</td>
                 <td className="py-3 px-4 flex justify-end">
                   <TrashIcon className="h-5 w-5" />
                 </td>

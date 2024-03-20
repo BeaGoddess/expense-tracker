@@ -1,10 +1,9 @@
 import Image from "next/image";
-import ImageNotFound from "../../../public/user/wallets-not-found.png";
 
 export default function WalletsNotFound() {
   return (
     <div className="text-black flex-1 flex flex-col justify-center items-center">
-      <Image src={ImageNotFound || ""} width={350} alt="Not found" />
+      <Image src={"/user/wallets-not-found.png"} width={350} height={350} alt="Not found" />
 
       <div className="font-bold text-xl mb-2"> No Wallets Found </div>
 
