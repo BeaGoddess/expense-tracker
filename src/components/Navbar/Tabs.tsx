@@ -1,6 +1,6 @@
 "use client";
 
-import { signout } from "@/app/(auth)/action";
+import { useSignOut as signout } from "@/hooks/auth";
 import { links as navLinks } from "@/types/navbar";
 import ItemLink from "./ItemsTab";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";

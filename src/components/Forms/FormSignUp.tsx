@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Button from "@/components/Button/Button";
 import Input from "@/components/Input/Input";
 import { useFormStatus } from "react-dom";
-import { signup } from "@/app/(auth)/action";
+import { useSignUp as signup } from "@/hooks/auth";
 
 export default function FormSignUp() {
   function Submit() {
