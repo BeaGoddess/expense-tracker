@@ -13,7 +13,7 @@ const buttonVariants = cva("focus:outline-none cursor-pointer", {
       warned: "bg-white text-black border border-gray-300",
       info: "bg-blue-400 text-white",
       auth: "bg-[#7574C7] p-2 w-full rounded-3xl mb-4 text-white text-sm text-center font-bold hover:bg-[#AEA9F2] duration-700",
-      create: "p-1 sm:p-2 bg-white rounded-lg w-[100px] sm:w-[150px] text-center font-bold sm:text-base text-sm mx-6 items-center flex justify-center"
+      create: "p-1 sm:p-2 bg-white rounded-lg w-[100px] sm:w-[150px] text-center font-bold sm:text-base text-sm items-center flex justify-center"
     },
     defaultVariants: {
       variant: "bg-black text-white",

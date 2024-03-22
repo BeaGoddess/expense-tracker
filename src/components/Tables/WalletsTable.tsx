@@ -15,7 +15,7 @@ export default function WalletsTable() {
   }
 
   return (
-    <div className="mx-10 flex-1">
+    <div className="flex-1 flex justify-center items-start px-6 container mx-auto">
       <table className="table-auto w-full">
         <thead>
           <tr className="bg-[#e6e4fd] uppercase text-base text-left">
