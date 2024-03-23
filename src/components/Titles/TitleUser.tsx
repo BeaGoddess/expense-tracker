@@ -1,3 +1,4 @@
+import { Box, Container, Flex, Spacer } from "@chakra-ui/react";
 import Button from "../Button/Button";
 
 interface TitleUserProps {
@@ -6,13 +7,26 @@ interface TitleUserProps {
 
 export default function TitleUser({ value }: TitleUserProps) {
   return (
-    <div className="bg-[#C0BAFF] py-2 sm:py-4 flex ">
-      <div className="container mx-auto flex justify-between px-6">
-        <span className="text-[#7574C7] font-bold text-2xl sm:text-4xl capitalize">
-          {value}
-        </span>
-        <Button variant={"create"} text="Create" />
-      </div>
-    </div>
+    <Box
+      bg={"#C0BAFF"}
+      py={{ sm: "16px", base: "8px" }}
+      className="bg-[#C0BAFF] py-2 sm:py-4 flex "
+    >
+      <Container maxW="container.xl" px={"24px"}>
+        <Flex>
+          <Box
+            textColor={"#7574C7"}
+            fontWeight={600}
+            fontSize={{ base: "24px", sm: "36px" }}
+            lineHeight={{ base: "32px", sm: "40px" }}
+            textTransform={"capitalize"}
+          >
+            {value}
+          </Box>
+          <Spacer />
+          <Button variant={"create"} text="Create" />
+        </Flex>
+      </Container>
+    </Box>
   );
 }
