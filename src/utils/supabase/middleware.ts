@@ -57,11 +57,11 @@ export async function updateSession(request: NextRequest) {
 
   // refreshing the auth token
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
   const url = new URL(request.url);
 
-  if (user) {
+  if (session) {
     // Logged -> can't go to login page
     if (authPaths.includes(url.pathname)) {
       return NextResponse.redirect(new URL("/", request.url));

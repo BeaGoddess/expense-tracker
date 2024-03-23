@@ -1,19 +1,13 @@
 "use client";
 
-import useWallets from "@/hooks/wallets";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { Tables } from "@/types/type";
 
-export default function WalletsTable() {
-  const { data: wallets, isLoading, isError } = useWallets();
+type WalletsProps = {
+  wallets: Tables<"wallets">[];
+};
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error</div>;
-  }
-
+export default function WalletsTable({ wallets }: WalletsProps) {
   return (
     <div className="flex-1 flex justify-center items-start px-6 container mx-auto">
       <table className="table-auto w-full">
@@ -25,24 +19,25 @@ export default function WalletsTable() {
           </tr>
         </thead>
         <tbody className="text-gray-500">
-          {wallets?.map((item, index) => {
-            return (
-              <tr
-                key={index}
-                className={
-                  index % 2 !== 0
-                    ? "bg-[#e6e4fd]/30 border-t border-b border-[#7574C7]"
-                    : ""
-                }
-              >
-                <td className="py-3 px-4"> {item.name}</td>
-                <td className="py-3 px-4"> {item.balance}€</td>
-                <td className="py-3 px-4 flex justify-end">
-                  <TrashIcon className="h-5 w-5" />
-                </td>
-              </tr>
-            );
-          })}
+          {wallets.length > 0 &&
+            wallets?.map((item, index) => {
+              return (
+                <tr
+                  key={index}
+                  className={
+                    index % 2 !== 0
+                      ? "bg-[#e6e4fd]/30 border-t border-b border-[#7574C7]"
+                      : ""
+                  }
+                >
+                  <td className="py-3 px-4"> {item.name}</td>
+                  <td className="py-3 px-4"> {item.balance}€</td>
+                  <td className="py-3 px-4 flex justify-end">
+                    <TrashIcon className="h-5 w-5" />
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
