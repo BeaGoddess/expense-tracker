@@ -5,8 +5,9 @@ export default function SignInPage() {
   return (
     <Box
       bg="white"
-      roundedBottom={{ md: "none", base: "xl" }}
-      roundedRight={{ md: "xl" }}
+      roundedBottom={"xl"}
+      roundedBottomLeft={{ base: "xl", md: "none" }}
+      roundedTopRight={{ md: "xl" }}
       color="black"
       p={{ base: 8, md: 16 }}
       w="full"
