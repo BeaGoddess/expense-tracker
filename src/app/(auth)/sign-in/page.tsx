@@ -22,13 +22,12 @@ export default function SignInPage() {
       <FormSignIn />
 
       <Text color="gray.500" fontSize="sm" mt={1}>
-        Don’t have an account?
+        <Text as="span">Don’t have an account? </Text>
         <Link
           href="./sign-up"
           color="#7574C7"
           textDecoration="underline"
           fontWeight="semibold"
-          ml={1}
         >
           Sign up
         </Link>
