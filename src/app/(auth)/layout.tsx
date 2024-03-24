@@ -1,4 +1,5 @@
 import AppDetails from "@/components/AppDetails";
+import { Flex } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,8 +9,18 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="min-h-screen bg-gradient-to-r from-[#8E8CDA] to-[#C0BAFF] flex items-center justify-center">
-      <div className="w-full flex flex-col md:flex-row md:max-w-[900px] md:m-2 m-2">
+    <Flex
+      minH="100vh"
+      bgGradient="linear(to-r, #8E8CDA, #C0BAFF)"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Flex
+        w="full"
+        flexDir={{ base: "column", md: "row" }}
+        maxW={{ md: "900px" }}
+        m={2}
+      >
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -18,7 +29,7 @@ export default function AuthLayout({
         />
         <AppDetails />
         {children}
-      </div>
-    </section>
+      </Flex>
+    </Flex>
   );
 }
