@@ -28,8 +28,7 @@ export default function WalletsTable({ wallets }: WalletsProps) {
           </Tr>
         </Thead>
         <Tbody textColor={"gray"}>
-          {wallets.length > 0 &&
-            wallets?.map((item, index) => {
+          {wallets?.map((item, index) => {
               return (
                 <Tr
                   key={index}

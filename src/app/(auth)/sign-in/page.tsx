@@ -1,15 +1,38 @@
 import FormSignIn from "@/components/Forms/FormSignIn";
+import { Box, Link, Text } from "@chakra-ui/react";
 
 export default function SignInPage() {
   return (
-    <div className="bg-white rounded-b-xl md:rounded-r-xl md:rounded-bl-none text-black p-8 md:p-16 md:w-full md:max-w-[50%] flex flex-col justify-center items-center">
-      <div className="font-bold text-2xl mb-6"> Sign in </div>
-
+    <Box
+      bg="white"
+      roundedBottom={{ md: "none", base: "xl" }}
+      roundedRight={{ md: "xl" }}
+      color="black"
+      p={{ base: 8, md: 16 }}
+      w="full"
+      maxW={{ md: "50%" }}
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Text fontWeight="bold" fontSize="2xl" mb={6}>
+        Sign in
+      </Text>
       <FormSignIn />
 
-      <div className="text-gray-500 text-sm mt-1">
-        Don’t have an account? <a href="./sign-up" className="underline text-[#7574C7] font-semibold">Sign up</a>
-      </div>
-    </div>
+      <Text color="gray.500" fontSize="sm" mt={1}>
+        Don’t have an account?
+        <Link
+          href="./sign-up"
+          color="#7574C7"
+          textDecoration="underline"
+          fontWeight="semibold"
+          ml={1}
+        >
+          Sign up
+        </Link>
+      </Text>
+    </Box>
   );
 }
