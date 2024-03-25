@@ -1,16 +1,30 @@
 import Image from "next/image";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 export default function WalletsNotFound() {
   return (
-    <div className="text-black flex-1 flex flex-col justify-center items-center">
-      <Image src={"/user/wallets-not-found.png"} width={350} height={350} alt="Not found" />
+    <Flex
+      flex={1}
+      direction={"column"}
+      justify={"center"}
+      align={"center"}
+      color={"black"}
+    >
+      <Image
+        src={"/user/wallets-not-found.png"}
+        width={350}
+        height={350}
+        alt="Not found"
+      />
 
-      <div className="font-bold text-xl mb-2"> No Wallets Found </div>
+      <Text fontWeight={"bold"} fontSize={"xl"} mb={2}>
+        No Wallets Found
+      </Text>
 
-      <div className="leading-7 w-[350px] text-center">
-        It seems you haven&apos;t created a wallet yet... <br /> Start to create
-        one.
-      </div>
-    </div>
+      <Text lineHeight={7} width={"350px"} textAlign={"center"}>
+        It seems you haven&apos;t created a wallet yet... <Box as="br" /> Start
+        to create one.
+      </Text>
+    </Flex>
   );
 }

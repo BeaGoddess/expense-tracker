@@ -1,5 +1,6 @@
 "use client";
 
+import { Container, Flex, Spinner } from "@chakra-ui/react";
 import TitleUser from "@/components/Titles/TitleUser";
 import WalletsNotFound from "@/components/NotFound/WalletsNotFound";
 import WalletsTable from "@/components/Tables/WalletsTable";
@@ -17,11 +18,15 @@ export default function WalletsPage() {
     };
 
     fetchData();
-  }, [getWalles]);
+  }, []);
 
   const renderContent = () => {
     if (loading) {
-      return <div>Loading</div>;
+      return (
+        <Container maxW="container.xl" px={"24px"} centerContent>
+          <Spinner color="#7574C7" />
+        </Container>
+      );
     } else if (wallets?.length > 0) {
       return <WalletsTable wallets={wallets} />;
     } else {
@@ -30,9 +35,9 @@ export default function WalletsPage() {
   };
 
   return (
-    <div className="mt-8 sm:mt-20 flex-1 flex flex-col sm:gap-16 gap-10">
+    <Flex mt={{ base: 8, sm: 20 }} flex={1} direction={"column"}>
       <TitleUser value="wallets" />
       {renderContent()}
-    </div>
+    </Flex>
   );
 }

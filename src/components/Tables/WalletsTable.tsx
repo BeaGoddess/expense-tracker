@@ -9,7 +9,7 @@ type WalletsProps = {
 
 export default function WalletsTable({ wallets }: WalletsProps) {
   return (
-    <Container maxW="container.xl" px={"24px"} centerContent>
+    <Container maxW="container.xl" px={"24px"} mt={8} centerContent>
       <Table variant="striped" size={"lg"}>
         <Thead>
           <Tr
@@ -29,26 +29,26 @@ export default function WalletsTable({ wallets }: WalletsProps) {
         </Thead>
         <Tbody textColor={"gray"}>
           {wallets?.map((item, index) => {
-              return (
-                <Tr
-                  key={index}
-                  bg={"#e6e4fd/ 0.3"}
-                  borderTop={"1px"}
-                  borderBottom={"1px"}
-                  borderColor={"#7574C7"}
-                >
-                  <Td px={"1rem"} py={"0.75rem"}>
-                    {item.name}
-                  </Td>
-                  <Td px={"1rem"} py={"0.75rem"}>
-                    {item.balance}
-                  </Td>
-                  <Td px={"1rem"} py={"0.75rem"}>
-                    <TrashIcon className="w-5 h-5" />
-                  </Td>
-                </Tr>
-              );
-            })}
+            return (
+              <Tr
+                key={index}
+                bg={"#e6e4fd/ 0.3"}
+                borderTop={"1px"}
+                borderBottom={"1px"}
+                borderColor={"#7574C7"}
+              >
+                <Td px={"1rem"} py={"0.75rem"}>
+                  {item.name}
+                </Td>
+                <Td px={"1rem"} py={"0.75rem"}>
+                  {item.balance}
+                </Td>
+                <Td px={"1rem"} py={"0.75rem"}>
+                  <TrashIcon className="w-5 h-5" />
+                </Td>
+              </Tr>
+            );
+          })}
         </Tbody>
       </Table>
     </Container>

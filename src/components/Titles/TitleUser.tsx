@@ -7,11 +7,7 @@ interface TitleUserProps {
 
 export default function TitleUser({ value }: TitleUserProps) {
   return (
-    <Box
-      bg={"#C0BAFF"}
-      py={{ sm: "16px", base: "8px" }}
-      className="bg-[#C0BAFF] py-2 sm:py-4 flex "
-    >
+    <Box bg={"#C0BAFF"} py={{ sm: 4, base: 2 }}>
       <Container maxW="container.xl" px={"24px"}>
         <Flex>
           <Box

@@ -1,9 +1,9 @@
 import FormSignIn from "@/components/Forms/FormSignIn";
-import { Box, Link, Text } from "@chakra-ui/react";
+import { Flex, Link, Text } from "@chakra-ui/react";
 
 export default function SignInPage() {
   return (
-    <Box
+    <Flex
       bg="white"
       roundedBottom={"xl"}
       roundedBottomLeft={{ base: "xl", md: "none" }}
@@ -12,10 +12,9 @@ export default function SignInPage() {
       p={{ base: 8, md: 16 }}
       w="full"
       maxW={{ md: "50%" }}
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
+      direction="column"
+      justify="center"
+      align="center"
     >
       <Text fontWeight="bold" fontSize="2xl" mb={6}>
         Sign in
@@ -33,6 +32,6 @@ export default function SignInPage() {
           Sign up
         </Link>
       </Text>
-    </Box>
+    </Flex>
   );
 }
