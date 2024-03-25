@@ -4,7 +4,7 @@ import { useSignOut as signout } from "@/hooks/auth";
 import { links as navLinks } from "@/types/navbar";
 import ItemLink from "./ItemsTab";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/solid";
-import { cn } from "@/lib/utils/cn";
+import { Flex, Box, Text } from "@chakra-ui/react";
 
 interface TabsProps {
   capsule: boolean;
@@ -12,28 +12,34 @@ interface TabsProps {
 
 export default function Tabs({ capsule }: TabsProps) {
   return (
-    <div className="justify-between flex-1 flex flex-row sm:flex-col">
-      <div className="flex gap-4 flex-row sm:flex-col">
+    <Flex
+      justify={"space-between"}
+      flex={1}
+      direction={{ base: "row", sm: "column" }}
+    >
+      <Flex gap={4} direction={{ base: "row", sm: "column" }}>
         {navLinks.map((link) => {
           return <ItemLink key={link.name} item={link} capsule={capsule} />;
         })}
-      </div>
+      </Flex>
 
-      <div
-        className="font-bold text-lg text-[#7574C7] cursor-pointer hover:bg-white rounded-md duration-700"
+      <Box
+        fontWeight="bold"
+        fontSize="lg"
+        color="#7574C7"
+        cursor="pointer"
+        borderRadius={"md"}
+        transitionDuration={"700ms"}
+        _hover={{ bgColor: "white" }}
         onClick={() => signout()}
       >
-        <div className="flex p-2 gap-6 items-center">
+        <Flex p={2} align={"center"} gap={6}>
           <ArrowRightCircleIcon className="h-5 w-5 my-1" />
-          <div
-            className={cn("hidden sm:block", {
-              "sm:hidden": capsule,
-            })}
-          >
+          <Text display={{ base: "none", sm: capsule ? "none" : "block" }}>
             Sign out
-          </div>
-        </div>
-      </div>
-    </div>
+          </Text>
+        </Flex>
+      </Box>
+    </Flex>
   );
 }

@@ -3,22 +3,27 @@
 import TitleBar from "./TitleNavbar";
 import Tabs from "./Tabs";
 import { useState } from "react";
-import { cn } from "@/lib/utils/cn";
+import { Flex } from "@chakra-ui/react";
 
 export default function NavBar() {
   const [capsule, setCapsule] = useState(false);
 
   return (
-    <div
-      className={cn(
-        "w-full sm:w-[250px] sm:h-auto h-[70px] text-white bg-gradient-to-b from-[#8E8CDA] to-[#C0BAFF] p-3 flex flex-row sm:flex-col sm:static fixed overflow-hidden top-0",
-        {
-          "w-full sm:w-[60px]": capsule === true,
-        }
-      )}
+    <Flex
+      w={{ base: "full", sm: "250px" }}
+      direction={{ base: "row", sm: "column" }}
+      position={{ base: "fixed", sm: "static" }}
+      h={{ base: "70px", sm: "auto" }}
+      overflow={"hidden"}
+      top={0}
+      p={3}
+      bgGradient="linear(to-b, #8E8CDA, #C0BAFF)"
+      color="white"
+      zIndex={10}
+      {...(capsule && { w: "60px" })}
     >
       <TitleBar setCapsule={setCapsule} capsule={capsule} />
       <Tabs capsule={capsule} />
-    </div>
+    </Flex>
   );
 }

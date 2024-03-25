@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils/cn";
-import Link from "next/link";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { Item } from "@/types/navbar";
+import { Link, Text, Flex } from "@chakra-ui/react";
 
 export default function ItemLink({
   item,
@@ -15,26 +15,27 @@ export default function ItemLink({
 
   return (
     <Link
+      as={NextLink}
       href={item.href}
-      className={cn(
-        "text-lg font-medium text-white hover:bg-[#7574C7]/75 rounded-md transition-colors",
-        {
-          "text-[#7574C7] bg-white font-bold hover:bg-white":
-            pathname === item.href,
-        }
-      )}
+      fontSize={"lg"}
+      fontWeight={"medium"}
+      _hover={{ bgColor: "rgba(117 116 199 / 0.75)" }}
+      rounded={"md"}
+      transition={"background-color 0.3s"}
+      {...(pathname === item.href && {
+        color: "#7574C7",
+        bgColor: "white",
+        fontWeight: "bold",
+        _hover: { bgColor: "white" },
+      })}
     >
-      <div className="flex p-2 gap-6 items-center">
+      <Flex p={2} gap={6} align={"center"}>
         <LinkIcon className="h-5 w-5 my-1" />
-        <p
-          className={cn(
-            { "hidden sm:block": capsule === false },
-            { "hidden sm:hidden": capsule === true }
-          )}
-        >
+
+        <Text display={capsule ? "none" : { base: "none", sm: "block" }}>
           {item.name}
-        </p>
-      </div>
+        </Text>
+      </Flex>
     </Link>
   );
 }
