@@ -1,73 +1,153 @@
 "use client";
 
 import { toast } from "react-toastify";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
-import { useFormStatus } from "react-dom";
+import { Input, Button, Box, FormControl } from "@chakra-ui/react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useSignUp as signup } from "@/hooks/auth";
 
+interface FormValues {
+  email: string;
+  password: string;
+  name: string;
+  username: string;
+  repeatPassword: string;
+}
+
 export default function FormSignUp() {
-  function Submit() {
-    const { pending } = useFormStatus();
-    return (
-      <Button
-        text={pending ? "Creating..." : "Create an account"}
-        variant="auth"
-        type="submit"
-        disabled={pending}
-      />
-    );
-  }
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<FormValues>();
 
   const validatePw = (pw: string, repeatPw: string) => {
     return pw === repeatPw;
   };
 
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    if (validatePw(data.password, data.repeatPassword)) {
+      const response = await signup(data);
+
+      if (response?.error) {
+        toast.error(response?.error);
+      }
+    } else {
+      toast.error("Password doesn't match.");
+    }
+  };
+
   return (
-    <form
-      action={async (formData) => {
-        if (
-          validatePw(
-            formData.get("password") as string,
-            formData.get("repeat-password") as string
-          )
-        ) {
-          const { error } = await signup(formData);
-          toast.error(error);
-        } else {
-          toast.error("Password doesn't match.");
-        }
-      }}
-    >
-      <Input name="name" placeholder="Name" variant="auth" required />
+    <Box as="form" width="full" onSubmit={handleSubmit(onSubmit)}>
+      <FormControl isRequired>
+        <Input
+          {...register("name", { required: true })}
+          type="text"
+          placeholder="Name"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
 
-      <Input name="username" placeholder="Username" variant="auth" required />
+      <FormControl isRequired>
+        <Input
+          {...register("username", { required: true })}
+          type="text"
+          placeholder="Username"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
 
-      <Input
-        type="email"
-        name="email"
-        placeholder="Email"
+      <FormControl isRequired>
+        <Input
+          {...register("email", { required: true })}
+          type="email"
+          placeholder="Email"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
+
+      <FormControl isRequired>
+        <Input
+          {...register("password", { required: true })}
+          type="password"
+          placeholder="Password"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
+
+      <FormControl isRequired>
+        <Input
+          {...register("repeatPassword", { required: true })}
+          type="password"
+          placeholder="Repeat password"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
+
+      <Button
+        isLoading={isSubmitting}
         variant="auth"
-        required
-      />
-
-      <Input
-        name="password"
-        placeholder="Password"
-        type="password"
-        variant="auth"
-        required
-      />
-
-      <Input
-        name="repeat-password"
-        placeholder="Repeat password"
-        type="password"
-        variant="auth"
-        required
-      />
-
-      <Submit />
-    </form>
+        type="submit"
+        disabled={isSubmitting}
+        bg="#7574C7"
+        p={2}
+        w="full"
+        mb={4}
+        color="white"
+        rounded="3xl"
+        fontSize="sm"
+        fontWeight="bold"
+        textAlign="center"
+        _hover={{
+          bg: "#AEA9F2",
+        }}
+      >
+        {isSubmitting ? "Creating..." : "Create an account"}
+      </Button>
+    </Box>
   );
 }

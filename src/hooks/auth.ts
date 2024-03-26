@@ -4,12 +4,25 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { useSupabaseServer } from "@/utils/supabase/server";
 
-export async function useSignIn(formData: FormData) {
+interface FormValuesSignIn {
+  email: string;
+  password: string;
+}
+
+interface FormValuesSignUp {
+  email: string;
+  password: string;
+  name: string;
+  username: string;
+  repeatPassword: string;
+}
+
+export async function useSignIn(formData: FormValuesSignIn) {
   const supabase = useSupabaseServer();
 
   const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
+    email: formData.email,
+    password: formData.password,
   };
 
   const { error } = await supabase.auth.signInWithPassword(data);
@@ -23,19 +36,18 @@ export async function useSignIn(formData: FormData) {
   }
 
   redirect("/");
-  
 }
 
-export async function useSignUp(formData: FormData) {
+export async function useSignUp(formData: FormValuesSignUp) {
   const supabase = useSupabaseServer();
 
   const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
+    email: formData.email,
+    password: formData.password,
     options: {
       data: {
-        name: formData.get("name") as string,
-        username: formData.get("username") as string,
+        name: formData.name,
+        username: formData.username,
       },
     },
   };

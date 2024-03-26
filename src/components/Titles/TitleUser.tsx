@@ -1,5 +1,4 @@
-import { Box, Container, Flex, Spacer } from "@chakra-ui/react";
-import Button from "../Button/Button";
+import { Button, Box, Container, Flex, Spacer } from "@chakra-ui/react";
 
 interface TitleUserProps {
   value: "wallets" | "transactions" | "profile";
@@ -19,8 +18,21 @@ export default function TitleUser({ value }: TitleUserProps) {
           >
             {value}
           </Box>
+          
           <Spacer />
-          <Button variant={"create"} text="Create" />
+
+          <Button
+            bg="white"
+            color="black"
+            w={{ base: "100px", sm: "150px" }}
+            fontSize="sm"
+            _focus={{
+              outline: "none",
+            }}
+            cursor="pointer"
+          >
+            Create
+          </Button>
         </Flex>
       </Container>
     </Box>

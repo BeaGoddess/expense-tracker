@@ -1,47 +1,86 @@
 "use client";
 import { toast } from "react-toastify";
 import { useSignIn as signin } from "@/hooks/auth";
-import Button from "@/components/Button/Button";
-import Input from "@/components/Input/Input";
-import { useFormStatus } from "react-dom";
+import { Input, Button, Box, FormControl } from "@chakra-ui/react";
+import { useForm, SubmitHandler } from "react-hook-form";
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 export default function FormSignIn() {
-  function Submit() {
-    const { pending } = useFormStatus();
-    return (
-      <Button
-        text={pending ? "Logging in..." : "Login"}
-        variant="auth"
-        type="submit"
-        disabled={pending}
-      />
-    );
-  }
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const response = await signin(data);
+
+    if (response?.error) {
+      toast.error(response?.error);
+    }
+  };
 
   return (
-    <form
-      action={async (formData) => {
-        const { error } = await signin(formData);
-        toast.error(error);
-      }}
-    >
-      <Input
-        type="email"
-        name="email"
-        placeholder="Email"
-        variant="auth"
-        required
-      />
+    <Box as="form" width="full" onSubmit={handleSubmit(onSubmit)}>
+      <FormControl isRequired>
+        <Input
+          {...register("email", { required: true })}
+          type="email"
+          placeholder="Email"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
 
-      <Input
-        name="password"
-        placeholder="Password"
-        type="password"
-        variant="auth"
-        required
-      />
+      <FormControl isRequired>
+        <Input
+          {...register("password", { required: true })}
+          type="password"
+          placeholder="Password"
+          p={2}
+          w="full"
+          focusBorderColor="transparent"
+          variant="unstyled"
+          bg="rgba(174, 169, 242, 0.2)"
+          rounded="lg"
+          mb={4}
+          color="gray.500"
+          fontSize="sm"
+          pl={4}
+        />
+      </FormControl>
 
-      <Submit />
-    </form>
+      <Button
+        isLoading={isSubmitting}
+        variant="auth"
+        type="submit"
+        disabled={isSubmitting}
+        bg="#7574C7"
+        p={2}
+        w="full"
+        mb={4}
+        color="white"
+        rounded="3xl"
+        fontSize="sm"
+        fontWeight="bold"
+        textAlign="center"
+        _hover={{
+          bg: "#AEA9F2",
+        }}
+      >
+        {isSubmitting ? "Logging in..." : "Login"}
+      </Button>
+    </Box>
   );
 }
