@@ -63,7 +63,6 @@ export default function FormSignIn() {
 
       <Button
         isLoading={isSubmitting}
-        variant="auth"
         type="submit"
         disabled={isSubmitting}
         bg="#7574C7"

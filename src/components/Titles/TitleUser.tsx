@@ -1,10 +1,20 @@
-import { Button, Box, Container, Flex, Spacer } from "@chakra-ui/react";
+import {
+  Button,
+  Box,
+  Container,
+  Flex,
+  Spacer,
+  useDisclosure,
+} from "@chakra-ui/react";
+import CustomModal from "../Modal/CustomModal";
 
 interface TitleUserProps {
   value: "wallets" | "transactions" | "profile";
 }
 
 export default function TitleUser({ value }: TitleUserProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box bg={"#C0BAFF"} py={{ sm: 4, base: 2 }}>
       <Container maxW="container.xl" px={"24px"}>
@@ -18,7 +28,7 @@ export default function TitleUser({ value }: TitleUserProps) {
           >
             {value}
           </Box>
-          
+
           <Spacer />
 
           <Button
@@ -30,9 +40,12 @@ export default function TitleUser({ value }: TitleUserProps) {
               outline: "none",
             }}
             cursor="pointer"
+            onClick={onOpen}
           >
             Create
           </Button>
+
+          <CustomModal isOpen={isOpen} onClose={onClose} />
         </Flex>
       </Container>
     </Box>
