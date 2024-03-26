@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Button,
   Box,
@@ -45,7 +47,7 @@ export default function TitleUser({ value }: TitleUserProps) {
             Create
           </Button>
 
-          <CustomModal isOpen={isOpen} onClose={onClose} />
+          {value === "wallets" && <CustomModal isOpen={isOpen} onClose={onClose} />}
         </Flex>
       </Container>
     </Box>
