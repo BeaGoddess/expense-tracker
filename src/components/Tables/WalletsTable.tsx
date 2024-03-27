@@ -23,16 +23,21 @@ export default function WalletsTable({ wallets }: WalletsProps) {
   const { deleteWallet } = useWallets();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedWalletId, setSelectedWalletId] = useState<number>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onDeleteClick = (walletId: number) => {
     setSelectedWalletId(walletId);
     onOpen();
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    setIsLoading(true);
+
     if (selectedWalletId) {
-      deleteWallet(selectedWalletId);
+      await deleteWallet(selectedWalletId);
     }
+    
+    setIsLoading(false);
     onClose();
   };
 
@@ -87,6 +92,7 @@ export default function WalletsTable({ wallets }: WalletsProps) {
         isOpen={isOpen}
         onClose={onClose}
         onDelete={() => handleDelete()}
+        isLoading={isLoading}
       />
     </Container>
   );

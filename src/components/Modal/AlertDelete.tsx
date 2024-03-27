@@ -15,17 +15,21 @@ interface DeleteWalletAlertProps {
   isOpen: boolean;
   onClose: () => void;
   onDelete: () => void;
+  isLoading: boolean;
 }
 
 const AlertDelete: React.FC<DeleteWalletAlertProps> = ({
   isOpen,
   onClose,
   onDelete,
+  isLoading,
 }) => {
   const leastDestructiveRef = useRef<HTMLButtonElement>(null);
 
   return (
     <AlertDialog
+      size={"lg"}
+      isCentered
       isOpen={isOpen}
       leastDestructiveRef={leastDestructiveRef}
       onClose={onClose}
@@ -44,7 +48,12 @@ const AlertDelete: React.FC<DeleteWalletAlertProps> = ({
             <Button ref={leastDestructiveRef} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="red" onClick={onDelete} ml={3}>
+            <Button
+              colorScheme="red"
+              onClick={onDelete}
+              ml={3}
+              isLoading={isLoading}
+            >
               Delete
             </Button>
           </AlertDialogFooter>
