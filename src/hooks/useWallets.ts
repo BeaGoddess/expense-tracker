@@ -53,6 +53,32 @@ export const useWallets = () => {
     }
   };
 
+  const deleteWallet = async (walletId: number) => {
+    const {
+      data: { user },
+    } = await client.auth.getUser();
+
+    if (user) {
+      const userId = user?.id;
+
+      const { error } = await client
+        .from("wallets")
+        .delete()
+        .eq("id", walletId)
+        .eq("user_id", userId);
+
+      if (error) {
+        return { error: error.message };
+      }
+
+      setWallets((prevWallets) =>
+        prevWallets.filter((wallet) => wallet.id !== walletId)
+      );
+
+      return { success: true };
+    }
+  };
+
   useEffect(() => {
     getWallets();
   }, [wallets]);
@@ -61,6 +87,6 @@ export const useWallets = () => {
     wallets,
     getWallets,
     createWallet,
-    setWallets,
+    deleteWallet,
   };
 };
