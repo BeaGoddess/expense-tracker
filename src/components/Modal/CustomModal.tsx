@@ -16,11 +16,6 @@ interface CustomModalProps {
   onClose: () => void;
 }
 
-interface FormValues {
-  name: string;
-  balance: string;
-}
-
 const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"lg"} isCentered>

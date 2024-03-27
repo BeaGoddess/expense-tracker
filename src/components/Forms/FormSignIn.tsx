@@ -1,6 +1,6 @@
 "use client";
 import { toast } from "react-toastify";
-import { useSignIn as signin } from "@/hooks/auth";
+import { useSignIn as signin } from "@/hooks/useAuth";
 import { Input, Button, Box, FormControl } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 interface FormValues {

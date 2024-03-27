@@ -9,10 +9,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useWallets } from "@/hooks/useWallets";
 
 interface FormValues {
   name: string;
-  balance: string;
+  balance: number;
 }
 
 interface FormWalletProps {
@@ -26,9 +27,16 @@ export default function FormWallet({ onClose }: FormWalletProps) {
     register,
   } = useForm<FormValues>();
 
+  const { createWallet } = useWallets();
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log(data);
+    const response = await createWallet(data);
+
+    if (response?.success) {
+      onClose();
+    }
   };
+
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)}>
       <ModalBody>
@@ -64,7 +72,8 @@ export default function FormWallet({ onClose }: FormWalletProps) {
 
           <Input
             {...register("balance", { required: true })}
-            type="text"
+            type="number"
+            step="0.01"
             placeholder="Balance"
             variant="outline"
             bg={"rgba(192, 186, 255, 0.15)"}

@@ -3,7 +3,7 @@
 import { toast } from "react-toastify";
 import { Input, Button, Box, FormControl } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useSignUp as signup } from "@/hooks/auth";
+import { useSignUp as signup } from "@/hooks/useAuth";
 
 interface FormValues {
   email: string;

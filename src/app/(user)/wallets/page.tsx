@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 
 export default function WalletsPage() {
   const [loading, setLoading] = useState(true);
-  const { wallets, getWalles } = useWallets();
+  const { wallets, getWallets } = useWallets();
 
   useEffect(() => {
     const fetchData = async () => {
-      await getWalles();
+      await getWallets();
       setLoading(false);
     };
 
