@@ -9,6 +9,146 @@
 export type Database = {
   public: {
     Tables: {
+      categories: {
+        Row: {
+          color: string
+          created_at: string
+          icon: string | null
+          id: number
+          name: string
+        }
+        Insert: {
+          color: string
+          created_at?: string
+          icon?: string | null
+          id?: number
+          name: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          icon?: string | null
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      earnings: {
+        Row: {
+          category_id: number | null
+          created_at: string
+          date: string
+          description: string | null
+          id: number
+          name: string
+          user_id: string | null
+          value: number
+          wallet_id: number | null
+        }
+        Insert: {
+          category_id?: number | null
+          created_at?: string
+          date: string
+          description?: string | null
+          id?: number
+          name: string
+          user_id?: string | null
+          value: number
+          wallet_id?: number | null
+        }
+        Update: {
+          category_id?: number | null
+          created_at?: string
+          date?: string
+          description?: string | null
+          id?: number
+          name?: string
+          user_id?: string | null
+          value?: number
+          wallet_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_earnings_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_earnings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_earnings_wallet_id_fkey"
+            columns: ["wallet_id"]
+            isOneToOne: false
+            referencedRelation: "wallets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      expenses: {
+        Row: {
+          category_id: number | null
+          created_at: string
+          date: string
+          description: string | null
+          id: number
+          name: string
+          user_id: string | null
+          value: number
+          wallet_id: number | null
+        }
+        Insert: {
+          category_id?: number | null
+          created_at?: string
+          date: string
+          description?: string | null
+          id?: number
+          name: string
+          user_id?: string | null
+          value: number
+          wallet_id?: number | null
+        }
+        Update: {
+          category_id?: number | null
+          created_at?: string
+          date?: string
+          description?: string | null
+          id?: number
+          name?: string
+          user_id?: string | null
+          value?: number
+          wallet_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_expenses_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_expenses_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_expenses_wallet_id_fkey"
+            columns: ["wallet_id"]
+            isOneToOne: false
+            referencedRelation: "wallets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           id: string
