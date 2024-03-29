@@ -2,11 +2,6 @@ import useSupabaseBrowser from "@/utils/supabase/client";
 import { InsertTables, Tables } from "@/types/type";
 import { useEffect, useState } from "react";
 
-type WalletValues = {
-  name: string;
-  balance: string;
-};
-
 export const useWallets = () => {
   const client = useSupabaseBrowser();
   const [wallets, setWallets] = useState<Tables<"wallets">[]>([]);
@@ -43,7 +38,8 @@ export const useWallets = () => {
         .single();
 
       if (newWallet) {
-        setWallets([...wallets, newWallet]);
+        setWallets((prev) => [...prev, newWallet]);
+
         return { success: true, wallet: newWallet };
       }
 
@@ -79,14 +75,15 @@ export const useWallets = () => {
     }
   };
 
-  useEffect(() => {
-    getWallets();
-  }, [wallets]);
+  const refreshWallets = async () => {
+    await getWallets();
+  };
 
   return {
     wallets,
     getWallets,
     createWallet,
     deleteWallet,
+    refreshWallets,
   };
 };

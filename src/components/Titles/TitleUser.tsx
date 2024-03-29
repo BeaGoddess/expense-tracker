@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Button,
@@ -12,9 +12,10 @@ import CustomModal from "../Modal/CustomModal";
 
 interface TitleUserProps {
   value: "wallets" | "transactions" | "profile";
+  onCreate: () => void;
 }
 
-export default function TitleUser({ value }: TitleUserProps) {
+export default function TitleUser({ value, onCreate }: TitleUserProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -47,7 +48,13 @@ export default function TitleUser({ value }: TitleUserProps) {
             Create
           </Button>
 
-          {value === "wallets" && <CustomModal isOpen={isOpen} onClose={onClose} />}
+          {value === "wallets" && (
+            <CustomModal
+              isOpen={isOpen}
+              onClose={onClose}
+              onCreate={onCreate}
+            />
+          )}
         </Flex>
       </Container>
     </Box>

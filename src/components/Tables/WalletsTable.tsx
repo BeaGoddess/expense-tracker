@@ -13,13 +13,14 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { Tables } from "@/types/type";
 import { useWallets } from "@/hooks/useWallets";
 import AlertDelete from "../Modal/AlertDelete";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type WalletsProps = {
   wallets: Tables<"wallets">[];
+  onDelete: () => void;
 };
 
-export default function WalletsTable({ wallets }: WalletsProps) {
+export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
   const { deleteWallet } = useWallets();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedWalletId, setSelectedWalletId] = useState<number>();
@@ -36,8 +37,9 @@ export default function WalletsTable({ wallets }: WalletsProps) {
     if (selectedWalletId) {
       await deleteWallet(selectedWalletId);
     }
-    
+
     setIsLoading(false);
+    onDelete();
     onClose();
   };
 

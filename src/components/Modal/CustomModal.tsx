@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import {
@@ -14,9 +14,14 @@ import FormWallet from "../Forms/FormWallet";
 interface CustomModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onCreate: () => void;
 }
 
-const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose }) => {
+const CustomModal: React.FC<CustomModalProps> = ({
+  isOpen,
+  onClose,
+  onCreate,
+}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size={"lg"} isCentered>
       <ModalOverlay />
@@ -32,7 +37,7 @@ const CustomModal: React.FC<CustomModalProps> = ({ isOpen, onClose }) => {
           mt={2}
         />
 
-        <FormWallet onClose={onClose} />
+        <FormWallet onClose={onClose} onCreate={onCreate} />
       </ModalContent>
     </Modal>
   );

@@ -18,9 +18,10 @@ interface FormValues {
 
 interface FormWalletProps {
   onClose: () => void;
+  onCreate: () => void;
 }
 
-export default function FormWallet({ onClose }: FormWalletProps) {
+export default function FormWallet({ onClose, onCreate }: FormWalletProps) {
   const {
     handleSubmit,
     formState: { isSubmitting },
@@ -33,6 +34,7 @@ export default function FormWallet({ onClose }: FormWalletProps) {
     const response = await createWallet(data);
 
     if (response?.success) {
+      onCreate();
       onClose();
     }
   };

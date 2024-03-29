@@ -20,6 +20,10 @@ export default function WalletsPage() {
     fetchData();
   }, []);
 
+  const handleData = async () => {
+    await getWallets();
+  };
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -28,7 +32,7 @@ export default function WalletsPage() {
         </Container>
       );
     } else if (wallets?.length > 0) {
-      return <WalletsTable wallets={wallets} />;
+      return <WalletsTable wallets={wallets} onDelete={handleData} />;
     } else {
       return <WalletsNotFound />;
     }
@@ -36,7 +40,7 @@ export default function WalletsPage() {
 
   return (
     <Flex mt={{ base: 8, sm: 20 }} flex={1} direction={"column"}>
-      <TitleUser value="wallets" />
+      <TitleUser value="wallets" onCreate={handleData} />
       {renderContent()}
     </Flex>
   );
