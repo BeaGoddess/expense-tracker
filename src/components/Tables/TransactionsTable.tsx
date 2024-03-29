@@ -11,31 +11,31 @@ import {
 } from "@chakra-ui/react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { Tables } from "@/types/type";
-import { useWallets } from "@/hooks/useWallets";
 import AlertDelete from "../Modal/AlertDelete";
 import { useState } from "react";
+import { useExpenses } from "@/hooks/useExpenses";
 
-type WalletsProps = {
-  wallets: Tables<"wallets">[];
+type TransactionsProps = {
+  expenses: Tables<"expenses">[];
   onDelete: () => void;
 };
 
-export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
-  const { deleteWallet } = useWallets();
+export default function TransactionsTable({ expenses, onDelete }: TransactionsProps) {
+  const { deleteExpense } = useExpenses();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedWalletId, setSelectedWalletId] = useState<number>();
+  const [selected, setSelected] = useState<number>();
   const [isLoading, setIsLoading] = useState(false);
-
-  const onDeleteClick = (walletId: number) => {
-    setSelectedWalletId(walletId);
+  
+  const onDeleteClick = (id: number) => {
+    setSelected(id);
     onOpen();
   };
 
   const handleDelete = async () => {
     setIsLoading(true);
 
-    if (selectedWalletId) {
-      await deleteWallet(selectedWalletId);
+    if (selected) {
+      await deleteExpense(selected);
     }
 
     setIsLoading(false);
@@ -63,7 +63,7 @@ export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
           </Tr>
         </Thead>
         <Tbody textColor={"gray"}>
-          {wallets?.map((item, index) => {
+          {expenses?.map((item, index) => {
             return (
               <Tr
                 key={index}
@@ -76,7 +76,7 @@ export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
                   {item.name}
                 </Td>
                 <Td px={"1rem"} py={"0.75rem"}>
-                  {item.balance}
+                  {item.value}€
                 </Td>
                 <Td px={"1rem"} py={"0.75rem"}>
                   <TrashIcon
