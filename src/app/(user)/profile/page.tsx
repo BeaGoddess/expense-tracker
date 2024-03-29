@@ -1,3 +1,5 @@
+"use client";
+
 import TitleUser from "@/components/Titles/TitleUser";
 
 export default function ProfilePage() {
