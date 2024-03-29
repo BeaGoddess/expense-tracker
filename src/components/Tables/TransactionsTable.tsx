@@ -8,24 +8,32 @@ import {
   Td,
   Container,
   useDisclosure,
+  Stack,
+  Text,
 } from "@chakra-ui/react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { Tables } from "@/types/type";
 import AlertDelete from "../Modal/AlertDelete";
 import { useState } from "react";
 import { useExpenses } from "@/hooks/useExpenses";
+import TextDetails from "../Category/TextDetails";
+import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 
 type TransactionsProps = {
-  expenses: Tables<"expenses">[];
+  data: (Tables<"categories"> &
+    Tables<"expenses"> & { categoryName: string; type: string })[];
   onDelete: () => void;
 };
 
-export default function TransactionsTable({ expenses, onDelete }: TransactionsProps) {
+export default function TransactionsTable({
+  data,
+  onDelete,
+}: TransactionsProps) {
   const { deleteExpense } = useExpenses();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selected, setSelected] = useState<number>();
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const onDeleteClick = (id: number) => {
     setSelected(id);
     onOpen();
@@ -53,17 +61,23 @@ export default function TransactionsTable({ expenses, onDelete }: TransactionsPr
             fontSize={"16px"}
             textAlign={"left"}
           >
-            <Th px={"1rem"} py={"0.75rem"} w={"2/3"}>
+            <Th px={"1rem"} py={"0.75rem"}>
+              Category
+            </Th>
+
+            <Th px={"1rem"} py={"0.75rem"}>
               Name
             </Th>
+
             <Th px={"1rem"} py={"0.75rem"}>
-              Balance
+              Value
             </Th>
+
             <Th px={"1rem"} py={"0.75rem"} w={"40px"}></Th>
           </Tr>
         </Thead>
         <Tbody textColor={"gray"}>
-          {expenses?.map((item, index) => {
+          {data?.map((item, index) => {
             return (
               <Tr
                 key={index}
@@ -72,13 +86,30 @@ export default function TransactionsTable({ expenses, onDelete }: TransactionsPr
                 borderBottom={"1px"}
                 borderColor={"#7574C7"}
               >
-                <Td px={"1rem"} py={"0.75rem"}>
-                  {item.name}
+                <Td p={2}>
+                  <TextDetails
+                    name={item?.categoryName}
+                    icon={item?.icon}
+                    color={item?.color}
+                    date={item?.date}
+                  />
                 </Td>
-                <Td px={"1rem"} py={"0.75rem"}>
-                  {item.value}€
+
+                <Td p={2}>{item.name}</Td>
+
+                <Td p={2}>
+                  <Stack direction={"row"} align={"center"}>
+                    {item.type === "expense" ? (
+                      <IoMdArrowDropdown color="red" size={20} />
+                    ) : (
+                      <IoMdArrowDropup color="green" size={20} />
+                    )}
+
+                    <Text>{item.value}€</Text>
+                  </Stack>
                 </Td>
-                <Td px={"1rem"} py={"0.75rem"}>
+
+                <Td p={2}>
                   <TrashIcon
                     className="w-5 h-5 cursor-pointer"
                     onClick={() => onDeleteClick(item.id)}

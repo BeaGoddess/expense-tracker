@@ -4,6 +4,7 @@ import TransactionsTable from "@/components/Tables/TransactionsTable";
 import TitleUser from "@/components/Titles/TitleUser";
 import { useCategories } from "@/hooks/useCategories";
 import { useExpenses } from "@/hooks/useExpenses";
+import { Tables } from "@/types/type";
 import { Container, Flex, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
@@ -11,6 +12,22 @@ export default function TransactionsPage() {
   const [loading, setLoading] = useState(true);
   const { categories, getCategories } = useCategories();
   const { expenses, getExpenses } = useExpenses();
+
+  const mergedData = expenses
+    .map((expense) => {
+      const category = categories.find((cat) => cat.id === expense.category_id);
+      if (category) {
+        return {
+          ...category,
+          ...expense,
+          categoryName: category.name,
+          type: "expense",
+        };
+      }
+      return null;
+    })
+    .filter((item) => item !== null) as (Tables<"categories"> &
+    Tables<"expenses"> & { categoryName: string; type: string })[];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +43,8 @@ export default function TransactionsPage() {
     await getExpenses();
   };
 
+  console.log(categories);
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -35,7 +54,7 @@ export default function TransactionsPage() {
       );
     }
 
-    return <TransactionsTable expenses={expenses} onDelete={handleData} />;
+    return <TransactionsTable data={mergedData} onDelete={handleData} />;
   };
 
   return (
