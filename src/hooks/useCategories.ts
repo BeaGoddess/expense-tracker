@@ -1,12 +1,6 @@
 import useSupabaseBrowser from "@/utils/supabase/client";
-import { InsertTables, Tables } from "@/types/type";
-import { useEffect, useState } from "react";
-
-type CategoryValues = {
-  name: string;
-  color: string;
-  icon: string | null;
-};
+import { Tables } from "@/types/type";
+import { useState } from "react";
 
 export const useCategories = () => {
   const client = useSupabaseBrowser();
