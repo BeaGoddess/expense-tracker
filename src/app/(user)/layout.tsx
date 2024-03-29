@@ -9,7 +9,7 @@ export default function UserLayout({
 }) {
   return (
     <Flex
-      minH="100vh"
+      minH="calc(100dvh)"
       minW="fit-content"
       color="black"
       flexDirection={{ base: "column", sm: "row" }}

@@ -10,7 +10,7 @@ export default function AuthLayout({
 }) {
   return (
     <Flex
-      minH="100vh"
+      minH="calc(100dvh)"
       bgGradient="linear(to-r, #8E8CDA, #C0BAFF)"
       alignItems="center"
       justifyContent="center"
