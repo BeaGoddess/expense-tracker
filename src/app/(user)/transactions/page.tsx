@@ -43,8 +43,6 @@ export default function TransactionsPage() {
     await getExpenses();
   };
 
-  console.log(categories);
-
   const renderContent = () => {
     if (loading) {
       return (
