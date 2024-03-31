@@ -10,10 +10,11 @@ export default function NavBar() {
 
   return (
     <Flex
+
       w={{ base: "full", sm: "250px" }}
       direction={{ base: "row", sm: "column" }}
       position={{ base: "fixed", sm: "static" }}
-      h={{ base: "70px", sm: "calc(100dvh)" }}
+      h={{ base: "70px", sm: "auto" }}
       overflow={"hidden"}
       top={0}
       p={3}
