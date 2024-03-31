@@ -11,7 +11,17 @@ const breakpoints = {
   "2xl": "1536px",
 };
 
-const theme = extendTheme({ breakpoints });
+const scrollbarStyles = {
+  "*": {
+    scrollbarWidth: "thin",
+    scrollbarColor: "#C0BAFF transparent",
+  },
+};
+
+const theme = extendTheme(
+  { breakpoints },
+  { styles: { global: scrollbarStyles } }
+);
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return <ChakraProvider theme={theme}>{children}</ChakraProvider>;

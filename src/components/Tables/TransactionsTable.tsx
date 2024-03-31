@@ -82,9 +82,15 @@ export default function TransactionsTable({
 
   return (
     <Container maxW="container.xl" px={"24px"} mt={8} centerContent h={"auto"}>
-      <Box overflowY="auto" w="full" minH="fit-content" h={containerHeight}>
+      <Box
+        overflowY="auto"
+        w="full"
+        minH="fit-content"
+        h={containerHeight}
+  
+      >
         <Table variant="striped" size={"lg"}>
-          <Thead>
+          <Thead position={"sticky"} top={0} zIndex={1}>
             <Tr
               bg={"#e6e4fd"}
               textTransform={"uppercase"}
