@@ -17,7 +17,7 @@ interface CustomModalProps {
   onCreate: () => void;
 }
 
-const CustomModal: React.FC<CustomModalProps> = ({
+const ModalCreateWallet: React.FC<CustomModalProps> = ({
   isOpen,
   onClose,
   onCreate,
@@ -43,4 +43,4 @@ const CustomModal: React.FC<CustomModalProps> = ({
   );
 };
 
-export default CustomModal;
+export default ModalCreateWallet;

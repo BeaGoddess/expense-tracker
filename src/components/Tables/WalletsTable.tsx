@@ -53,13 +53,11 @@ export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
             fontSize={"16px"}
             textAlign={"left"}
           >
-            <Th px={"1rem"} py={"0.75rem"} w={"2/3"}>
+            <Th p={3} w={"2/3"}>
               Name
             </Th>
-            <Th px={"1rem"} py={"0.75rem"}>
-              Balance
-            </Th>
-            <Th px={"1rem"} py={"0.75rem"} w={"40px"}></Th>
+            <Th p={3}>Balance</Th>
+            <Th p={3} w={"40px"}></Th>
           </Tr>
         </Thead>
         <Tbody textColor={"gray"}>
@@ -72,13 +70,9 @@ export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
                 borderBottom={"1px"}
                 borderColor={"#7574C7"}
               >
-                <Td px={"1rem"} py={"0.75rem"}>
-                  {item.name}
-                </Td>
-                <Td px={"1rem"} py={"0.75rem"}>
-                  {item.balance}
-                </Td>
-                <Td px={"1rem"} py={"0.75rem"}>
+                <Td p={3}>{item.name}</Td>
+                <Td p={3}>{item.balance}€</Td>
+                <Td p={3}>
                   <TrashIcon
                     className="w-5 h-5 cursor-pointer"
                     onClick={() => onDeleteClick(item.id)}
@@ -91,6 +85,8 @@ export default function WalletsTable({ wallets, onDelete }: WalletsProps) {
       </Table>
 
       <AlertDelete
+        title="Delete Wallet"
+        description="Are you sure you want to delete this wallet?"
         isOpen={isOpen}
         onClose={onClose}
         onDelete={() => handleDelete()}

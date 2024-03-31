@@ -49,7 +49,7 @@ export const useEarnings = () => {
     }
   };
 
-  const deleteEarnings = async (id: number) => {
+  const deleteEarning = async (id: number) => {
     const {
       data: { user },
     } = await client.auth.getUser();
@@ -77,6 +77,6 @@ export const useEarnings = () => {
     earnings,
     getEarnings,
     createEarnings,
-    deleteEarnings,
+    deleteEarning,
   };
 };

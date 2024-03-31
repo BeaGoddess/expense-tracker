@@ -8,7 +8,8 @@ import {
   Spacer,
   useDisclosure,
 } from "@chakra-ui/react";
-import CustomModal from "../Modal/CustomModal";
+import ModalWallet from "../Modal/ModalWallet";
+import ModalTransaction from "../Modal/ModalTransaction";
 
 interface TitleUserProps {
   value: "wallets" | "transactions" | "profile";
@@ -17,6 +18,30 @@ interface TitleUserProps {
 
 export default function TitleUser({ value, onCreate }: TitleUserProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const renderModal = () => {
+    if (value === "wallets") {
+      return (
+        <ModalWallet
+          isOpen={isOpen}
+          onClose={onClose}
+          onCreate={onCreate}
+        />
+      );
+    }
+
+    if (value === "transactions") {
+      return (
+        <ModalTransaction
+          isOpen={isOpen}
+          onClose={onClose}
+          onCreate={onCreate}
+        />
+      );
+    }
+
+    return null;
+  };
 
   return (
     <Box bg={"#C0BAFF"} py={{ sm: 4, base: 2 }}>
@@ -48,13 +73,7 @@ export default function TitleUser({ value, onCreate }: TitleUserProps) {
             Create
           </Button>
 
-          {value === "wallets" && (
-            <CustomModal
-              isOpen={isOpen}
-              onClose={onClose}
-              onCreate={onCreate}
-            />
-          )}
+          {renderModal()}
         </Flex>
       </Container>
     </Box>

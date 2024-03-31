@@ -16,6 +16,8 @@ interface DeleteWalletAlertProps {
   onClose: () => void;
   onDelete: () => void;
   isLoading: boolean;
+  title: string;
+  description: string;
 }
 
 const AlertDelete: React.FC<DeleteWalletAlertProps> = ({
@@ -23,6 +25,8 @@ const AlertDelete: React.FC<DeleteWalletAlertProps> = ({
   onClose,
   onDelete,
   isLoading,
+  title,
+  description
 }) => {
   const leastDestructiveRef = useRef<HTMLButtonElement>(null);
 
@@ -37,11 +41,13 @@ const AlertDelete: React.FC<DeleteWalletAlertProps> = ({
       <AlertDialogOverlay>
         <AlertDialogContent>
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Delete Wallet
+            
+            {title}
           </AlertDialogHeader>
 
           <AlertDialogBody>
-            Are you sure you want to delete this wallet?
+            {description}
+            
           </AlertDialogBody>
 
           <AlertDialogFooter>
