@@ -10,11 +10,12 @@ import {
   useDisclosure,
   Stack,
   Text,
+  Box,
 } from "@chakra-ui/react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { Tables } from "@/types/type";
 import AlertDelete from "../Modal/AlertDelete";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useExpenses } from "@/hooks/useExpenses";
 import TextDetails from "../Category/TextDetails";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
@@ -43,6 +44,24 @@ export default function TransactionsTable({
   }>();
   const [isLoading, setIsLoading] = useState(false);
 
+  const [containerHeight, setContainerHeight] = useState<number | string>(
+    calculateHeight
+  );
+
+  function calculateHeight() {
+    return `calc(${window.innerHeight}px - 220px)`;
+  }
+
+  useEffect(() => {
+    function handleResize() {
+      setContainerHeight(calculateHeight());
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const onDeleteClick = (id: number, type: "expense" | "earning") => {
     setSelected({ id: id, type: type });
     onOpen();
@@ -62,68 +81,70 @@ export default function TransactionsTable({
   };
 
   return (
-    <Container maxW="container.xl" px={"24px"} mt={8} centerContent>
-      <Table variant="striped" size={"lg"}>
-        <Thead>
-          <Tr
-            bg={"#e6e4fd"}
-            textTransform={"uppercase"}
-            fontSize={"16px"}
-            textAlign={"left"}
-          >
-            <Th p={2}>Category</Th>
+    <Container maxW="container.xl" px={"24px"} mt={8} centerContent h={"auto"}>
+      <Box overflowY="auto" w="full" minH="fit-content" h={containerHeight}>
+        <Table variant="striped" size={"lg"}>
+          <Thead>
+            <Tr
+              bg={"#e6e4fd"}
+              textTransform={"uppercase"}
+              fontSize={"16px"}
+              textAlign={"left"}
+            >
+              <Th p={2}>Category</Th>
 
-            <Th p={2}>Name</Th>
+              <Th p={2}>Name</Th>
 
-            <Th p={2}>Value</Th>
+              <Th p={2}>Value</Th>
 
-            <Th p={2} w={"40px"}></Th>
-          </Tr>
-        </Thead>
-        <Tbody textColor={"gray"}>
-          {data?.map((item, index) => {
-            return (
-              <Tr
-                key={index}
-                bg={"#e6e4fd/ 0.3"}
-                borderTop={"1px"}
-                borderBottom={"1px"}
-                borderColor={"#7574C7"}
-              >
-                <Td p={2}>
-                  <TextDetails
-                    name={item?.categoryName}
-                    icon={item?.icon}
-                    color={item?.color}
-                    date={item?.date}
-                  />
-                </Td>
+              <Th p={2} w={"40px"}></Th>
+            </Tr>
+          </Thead>
+          <Tbody textColor={"gray"}>
+            {data?.map((item, index) => {
+              return (
+                <Tr
+                  key={index}
+                  bg={"#e6e4fd/ 0.3"}
+                  borderTop={"1px"}
+                  borderBottom={"1px"}
+                  borderColor={"#7574C7"}
+                >
+                  <Td p={2}>
+                    <TextDetails
+                      name={item?.categoryName}
+                      icon={item?.icon}
+                      color={item?.color}
+                      date={item?.date}
+                    />
+                  </Td>
 
-                <Td p={2}>{item.name}</Td>
+                  <Td p={2}>{item.name}</Td>
 
-                <Td p={2}>
-                  <Stack direction={"row"} align={"center"}>
-                    {item.type === "expense" ? (
-                      <IoMdArrowDropdown color="red" size={20} />
-                    ) : (
-                      <IoMdArrowDropup color="green" size={20} />
-                    )}
+                  <Td p={2}>
+                    <Stack direction={"row"} align={"center"}>
+                      {item.type === "expense" ? (
+                        <IoMdArrowDropdown color="red" size={20} />
+                      ) : (
+                        <IoMdArrowDropup color="green" size={20} />
+                      )}
 
-                    <Text>{item.value}€</Text>
-                  </Stack>
-                </Td>
+                      <Text>{item.value}€</Text>
+                    </Stack>
+                  </Td>
 
-                <Td p={2}>
-                  <TrashIcon
-                    className="w-5 h-5 cursor-pointer"
-                    onClick={() => onDeleteClick(item.id, item.type)}
-                  />
-                </Td>
-              </Tr>
-            );
-          })}
-        </Tbody>
-      </Table>
+                  <Td p={2}>
+                    <TrashIcon
+                      className="w-5 h-5 cursor-pointer"
+                      onClick={() => onDeleteClick(item.id, item.type)}
+                    />
+                  </Td>
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </Box>
 
       <AlertDelete
         title="Delete Transaction"

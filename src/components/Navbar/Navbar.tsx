@@ -13,7 +13,7 @@ export default function NavBar() {
       w={{ base: "full", sm: "250px" }}
       direction={{ base: "row", sm: "column" }}
       position={{ base: "fixed", sm: "static" }}
-      h={{ base: "70px", sm: "auto" }}
+      h={{ base: "70px", sm: "calc(100dvh)" }}
       overflow={"hidden"}
       top={0}
       p={3}

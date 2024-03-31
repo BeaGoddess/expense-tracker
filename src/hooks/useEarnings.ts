@@ -58,7 +58,7 @@ export const useEarnings = () => {
       const userId = user?.id;
 
       const { error } = await client
-        .from("expenses")
+        .from("earnings")
         .delete()
         .eq("id", id)
         .eq("user_id", userId);

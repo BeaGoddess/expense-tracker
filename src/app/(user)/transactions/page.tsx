@@ -96,7 +96,12 @@ export default function TransactionsPage() {
   };
 
   return (
-    <Flex mt={{ base: 8, sm: 20 }} flex={1} direction={"column"}>
+    <Flex
+      mt={{ base: 8, sm: 20 }}
+      flex={1}
+      direction={"column"}
+      h="auto"
+    >
       <TitleUser value="transactions" onCreate={handleData} />
       {renderContent()}
     </Flex>
