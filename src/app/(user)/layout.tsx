@@ -15,7 +15,7 @@ export default function UserLayout({
       flexDirection={{ base: "column", sm: "row" }}
     >
       <NavBar />
-      <div className="bg-slate-100 flex-1 flex flex-col min-h-[calc(100dvh)] sm:pt-0 pt-[75px]">
+      <div className="bg-slate-100 flex-1 flex flex-col min-h-[calc(100dvh)] sm:pt-0 pt-[76px]">
         {children}
       </div>
     </Flex>
