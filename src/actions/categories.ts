@@ -8,7 +8,10 @@ export async function getCategories() {
     },
   });
 
-  const data = await response.json();
-
-  return data;
+  if (response) {
+    const data = await response.json();
+    return data;
+  }
+  
+  return [];
 }
