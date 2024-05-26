@@ -1,6 +1,8 @@
+import { getNextApiBaseURL } from "@/lib/utils/fetch";
+
 export async function getCategories() {
-  const response = await fetch("http://localhost:3000/api/categories", {
-    method: "get",
+  const response = await fetch(`${getNextApiBaseURL()}/categories`, {
+    method: "GET",
     next: {
       tags: ["categories"],
     },
